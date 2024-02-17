@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_truck_frontend/widgets/counter_increment.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({super.key});
@@ -11,6 +12,26 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
+  int count = 1;
+
+  void incrementCount() {
+    setState(() {
+      count++;
+    });
+  }
+
+  void decrementCount() {
+    setState(() {
+      if (count > 0) {
+        count--;
+      } else {
+        // Handle the case where count is already less than 1
+        // You can choose to show a message or perform any other action
+        // For example, you might want to disable the decrement button
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -54,32 +75,12 @@ class _CartItemState extends State<CartItem> {
                     SizedBox(
                       width: 20,
                     ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      clipBehavior: Clip.hardEdge,
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: FaIcon(FontAwesomeIcons.minus),
-                          ),
-                          Text(
-                            "1",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: FaIcon(FontAwesomeIcons.plus),
-                          ),
-                        ],
-                      ),
-                    )
+                    CounterIncrement(
+                      // Define the variable count
+                      count: count,
+                      incCount: incrementCount,
+                      decCount: decrementCount,
+                    ),
                   ],
                 )
               ],

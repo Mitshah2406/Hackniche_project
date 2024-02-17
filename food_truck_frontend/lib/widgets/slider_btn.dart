@@ -5,8 +5,9 @@ import 'package:food_truck_frontend/presentation/cart_screen/cart_screen.dart';
 import 'package:slide_action/slide_action.dart';
 
 class SliderButton extends StatefulWidget {
-  const SliderButton({super.key});
-
+  const SliderButton({super.key, required this.text, required this.onSlide});
+  final String text;
+  final void Function() onSlide;
   @override
   State<SliderButton> createState() => _SliderButtonState();
 }
@@ -60,14 +61,7 @@ class _SliderButtonState extends State<SliderButton> {
           ),
         );
       },
-      action: () async {
-        // Async operation
-        await Future.delayed(
-          const Duration(seconds: 2),
-          () => Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (ctx) => CartScreen())),
-        );
-      },
+      action: widget.onSlide,
     );
   }
 }
