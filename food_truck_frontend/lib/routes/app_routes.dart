@@ -16,6 +16,7 @@ class AppRoutes {
 
   static const String appNavigationScreen = '/app_navigation_screen';
   static const String chat = '/chat';
+  static const String reviewScreen = '/review_screen';
 
   static const String initialRoute = '/initialRoute';
 

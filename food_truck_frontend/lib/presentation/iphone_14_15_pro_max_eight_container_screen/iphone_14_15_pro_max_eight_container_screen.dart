@@ -1,4 +1,5 @@
 import 'package:food_truck_frontend/presentation/chat_screen/chat_screen.dart';
+import 'package:food_truck_frontend/presentation/review_screen.dart';
 
 import 'notifier/iphone_14_15_pro_max_eight_container_notifier.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,7 @@ class Iphone1415ProMaxEightContainerScreenState
       case BottomBarEnum.User23x24:
         return "/";
       case BottomBarEnum.Setting:
-        return "/";
+        return AppRoutes.reviewScreen;
       default:
         return "/";
     }
@@ -64,8 +65,13 @@ class Iphone1415ProMaxEightContainerScreenState
     switch (currentRoute) {
       case AppRoutes.iphone1415ProMaxEightPage:
         return Iphone1415ProMaxEightPage();
+<<<<<<< HEAD
       case AppRoutes.chat:
         return Chat();
+=======
+      case AppRoutes.reviewScreen:
+        return ReviewPage();
+>>>>>>> 328bb978cf260fc688eafea352ba8a3cd248c7f1
       default:
         return DefaultWidget();
     }
