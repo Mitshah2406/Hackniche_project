@@ -19,8 +19,8 @@ router.post("/register-customer", customerController.registerCustomer);
 router.get("/complete-order-form", (req, res) => {
   res.render("completeOrder");
 });
-
-router.get("/get-menu-items", menuController);
+router.post("/create-menu-item", menuController.addItem);
+router.get("/get-menu-items", menuController.readMenu);
 // 404
 router.get("*", (req, res) => {
   res.render("404");
