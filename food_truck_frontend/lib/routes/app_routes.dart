@@ -15,6 +15,7 @@ class AppRoutes {
       '/iphone_14_15_pro_max_nine_screen';
 
   static const String appNavigationScreen = '/app_navigation_screen';
+  static const String chat = '/chat';
   static const String reviewScreen = '/review_screen';
 
   static const String initialRoute = '/initialRoute';

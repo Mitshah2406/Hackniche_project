@@ -9,7 +9,7 @@ final Map<String, String> enUs = {
   "lbl_cake": "Cake",
   "lbl_chicken": "Chicken",
   "lbl_customer": "Customer",
-  "lbl_john_k_square": "John K Square",
+  "lbl_john_k_square": "Mit Shah",
   "lbl_noodles": "Noodles",
   "lbl_others": "Others",
   "lbl_pizza": "Pizza",
