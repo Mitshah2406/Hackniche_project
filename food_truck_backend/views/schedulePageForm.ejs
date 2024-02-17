@@ -1,0 +1,34 @@
+<%- include('./includes/header.ejs') %>
+
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+      <div class="header-title">
+          <h4 class="card-title">Update Schedule</h4>
+      </div>
+  </div>
+  <div class="card-body">
+      <form action="" method="post">
+
+          <div class="form-group">
+              <label class="form-label" for="exampleInputtime">Start Time</label>
+              <input type="time" class="form-control" id="exampleInputtime" value="13:45"
+                  name="startTime">
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="exampleInputtime">End Time</label>
+              <input type="time" class="form-control" id="exampleInputtime" value="15:45"
+                  name="endTime">
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="exampleInputdatetime">Landmark</label>
+              <input type="datetime-local" class="form-control" id="exampleInputdatetime"
+                  name="landmark" value="2019-12-19T13:45:00">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+      </form>
+  </div>
+</div>
+
+<%- include('./includes/footer.ejs') %>
