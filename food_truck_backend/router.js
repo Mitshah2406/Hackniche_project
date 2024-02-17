@@ -41,8 +41,9 @@ router.post("/register-customer", customerController.registerCustomer);
 
 
 
+router.post('/save-menu-items', menuController.addItem)
 
-router.get('/get-menu-items', menuController)
+router.get('/get-menu-items', menuController.readMenu)
 // 404
 router.get("*", (req, res) => {
   res.render("404");

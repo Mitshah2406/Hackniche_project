@@ -16,9 +16,9 @@ Menu.prototype.cleanUp = function () {
     rating: this.data.rating,
     requirements: this.data.requirements, //items needed to preapre the dish
     photo: this.data.photo,
-    jain: this.jain, //true //false
-    veg: this.veg,
-    nonVeg: this.nonVeg,
+    jain: this.data.jain, //true //false
+    veg: this.data.veg,
+    nonVeg: this.data.nonVeg,
   };
 };
 
