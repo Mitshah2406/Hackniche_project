@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_truck_frontend/core/app_export.dart';
+import 'package:food_truck_frontend/presentation/cart_screen/cart_screen.dart';
 import 'package:food_truck_frontend/widgets/food_item_size_chips.dart';
 import 'package:food_truck_frontend/widgets/radio_button_wrapper.dart';
 import 'package:food_truck_frontend/widgets/slider_btn.dart';
@@ -139,7 +140,16 @@ class ItemDetailsPageState extends ConsumerState<ItemDetailsPage> {
                   SizedBox(
                     height: 20,
                   ),
-                  SliderButton(),
+                  SliderButton(
+                    text: "Order now",
+                    onSlide: () async {
+                      await Future.delayed(
+                        const Duration(seconds: 2),
+                        () => Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (ctx) => CartScreen())),
+                      );
+                    },
+                  ),
                 ],
               ),
             )

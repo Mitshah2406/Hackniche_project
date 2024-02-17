@@ -4,6 +4,7 @@ const router = express.Router();
 const foodTruckController = require("./controllers/foodTruckController");
 const orderController = require("./controllers/orderController.js");
 const reviewController = require("./controllers/reviewController.js");
+const menuController = require("./controllers/menuController.js");
 const customerController = require("./controllers/customerController.js");
 //Admin related apps
 router.get("/", foodTruckController.home);
@@ -19,6 +20,7 @@ router.get("/complete-order-form", (req, res) => {
   res.render("completeOrder");
 });
 
+router.get("/get-menu-items", menuController);
 // 404
 router.get("*", (req, res) => {
   res.render("404");

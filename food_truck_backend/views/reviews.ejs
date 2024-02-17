@@ -1,23 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Customer Reviews</title>
-  </head>
-  <body>
-    <h1>Customer Reviews</h1>
-    <ul>
-      <% reviews.forEach(review => { %>
-      <li>
-        <strong>Review ID:</strong> <%= review._id %><br />
-        <strong>Customer ID:</strong> <%= review.customerId %><br />
-        <strong>Customer Name:</strong> <%= review.custName %><br />
-        <strong>Comment:</strong> <%= review.comment %><br />
-        <strong>Rating:</strong> <%= review.rating %><br />
-        <hr />
-      </li>
-      <% }); %>
-    </ul>
-  </body>
-</html>
+<%-
+include('E:/Hackathon/HackNiche/Hackniche_project/food_truck_backend/views/includes/header.ejs')%>
+<div
+  class="conatiner-fluid content-inner mt-n5 py-0"
+  style="margin-left: 280px"
+>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card rounded">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <h4 class="mb-2">Invoice #215462</h4>
+              <h5 class="mb-3">Hello Kush</h5>
+              <p>Below are your reviews</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 mt-4">
+              <div class="table-responsive-lg">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Review ID</th>
+                      <th class="text-center" scope="col">Customer Name</th>
+                      <th class="text-center" scope="col">Comment</th>
+                      <th class="text-center" scope="col">Rating</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% reviews.forEach(review => { %>
+                    <tr>
+                      <td class="text-center"><%= review._id %></td>
+                      <td class="text-center"><%= review.custName %></td>
+                      <td class="text-center"><%= review.comment %></td>
+                      <td class="text-center"><%= review.rating %></td>
+                    </tr>
+                  </tbody>
+                  <% }); %>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="mb-0 mt-4">
+                <svg
+                  width="30"
+                  class="text-primary mb-3 me-2 icon-30"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="-0.757324"
+                    y="19.2427"
+                    width="28"
+                    height="4"
+                    rx="2"
+                    transform="rotate(-45 -0.757324 19.2427)"
+                    fill="currentColor"
+                  />
+                  <rect
+                    x="7.72803"
+                    y="27.728"
+                    width="28"
+                    height="4"
+                    rx="2"
+                    transform="rotate(-45 7.72803 27.728)"
+                    fill="currentColor"
+                  />
+                  <rect
+                    x="10.5366"
+                    y="16.3945"
+                    width="16"
+                    height="4"
+                    rx="2"
+                    transform="rotate(45 10.5366 16.3945)"
+                    fill="currentColor"
+                  />
+                  <rect
+                    x="10.5562"
+                    y="-0.556152"
+                    width="28"
+                    height="4"
+                    rx="2"
+                    transform="rotate(45 10.5562 -0.556152)"
+                    fill="currentColor"
+                  />
+                </svg>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less
+                normal distribution of letters, as opposed to using 'Content
+                here, content here', making it look like readable English.
+              </p>
+              <div class="d-flex justify-content-center mt-4">
+                <button type="button" class="btn btn-primary">Print</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%-
+include('E:/Hackathon/HackNiche/Hackniche_project/food_truck_backend/views/includes/footer.ejs')
+%>
