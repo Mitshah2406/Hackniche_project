@@ -1,12 +1,12 @@
 import 'notifier/iphone_14_15_pro_max_eight_notifier.dart';
 import 'package:flutter/material.dart';
-import 'package:mit_s_application3/core/app_export.dart';
-import 'package:mit_s_application3/widgets/app_bar/appbar_leading_circleimage.dart';
-import 'package:mit_s_application3/widgets/app_bar/appbar_subtitle.dart';
-import 'package:mit_s_application3/widgets/app_bar/appbar_subtitle_one.dart';
-import 'package:mit_s_application3/widgets/app_bar/appbar_trailing_image.dart';
-import 'package:mit_s_application3/widgets/app_bar/custom_app_bar.dart';
-import 'package:mit_s_application3/widgets/custom_search_view.dart';
+import 'package:food_truck_frontend/core/app_export.dart';
+import 'package:food_truck_frontend/widgets/app_bar/appbar_leading_circleimage.dart';
+import 'package:food_truck_frontend/widgets/app_bar/appbar_subtitle.dart';
+import 'package:food_truck_frontend/widgets/app_bar/appbar_subtitle_one.dart';
+import 'package:food_truck_frontend/widgets/app_bar/appbar_trailing_image.dart';
+import 'package:food_truck_frontend/widgets/app_bar/custom_app_bar.dart';
+import 'package:food_truck_frontend/widgets/custom_search_view.dart';
 
 // ignore_for_file: must_be_immutable
 class Iphone1415ProMaxEightPage extends ConsumerStatefulWidget {

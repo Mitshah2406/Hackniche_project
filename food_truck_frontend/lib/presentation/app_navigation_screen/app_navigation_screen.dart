@@ -1,6 +1,6 @@
 import 'notifier/app_navigation_notifier.dart';
 import 'package:flutter/material.dart';
-import 'package:mit_s_application3/core/app_export.dart';
+import 'package:food_truck_frontend/core/app_export.dart';
 
 class AppNavigationScreen extends ConsumerStatefulWidget {
   const AppNavigationScreen({Key? key})

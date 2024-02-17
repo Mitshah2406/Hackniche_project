@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mit_s_application3/presentation/iphone_14_15_pro_max_eight_container_screen/iphone_14_15_pro_max_eight_container_screen.dart';
-import 'package:mit_s_application3/presentation/iphone_14_15_pro_max_nine_screen/iphone_14_15_pro_max_nine_screen.dart';
-import 'package:mit_s_application3/presentation/app_navigation_screen/app_navigation_screen.dart';
+import 'package:food_truck_frontend/presentation/iphone_14_15_pro_max_eight_container_screen/iphone_14_15_pro_max_eight_container_screen.dart';
+import 'package:food_truck_frontend/presentation/iphone_14_15_pro_max_nine_screen/iphone_14_15_pro_max_nine_screen.dart';
+import 'package:food_truck_frontend/presentation/app_navigation_screen/app_navigation_screen.dart';
 
 class AppRoutes {
   static const String iphone1415ProMaxEightPage =

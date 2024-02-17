@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import 'package:mit_s_application3/presentation/iphone_14_15_pro_max_eight_container_screen/models/iphone_14_15_pro_max_eight_container_model.dart';
+import 'package:food_truck_frontend/presentation/iphone_14_15_pro_max_eight_container_screen/models/iphone_14_15_pro_max_eight_container_model.dart';
 part 'iphone_14_15_pro_max_eight_container_state.dart';
 
 final iphone1415ProMaxEightContainerNotifier = StateNotifierProvider<

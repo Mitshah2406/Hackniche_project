@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mit_s_application3/core/app_export.dart';
+import 'package:food_truck_frontend/core/app_export.dart';
 
 // ignore: must_be_immutable
 class AppbarLeadingImage extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mit_s_application3/core/app_export.dart';
-import 'package:mit_s_application3/widgets/custom_icon_button.dart';
+import 'package:food_truck_frontend/core/app_export.dart';
+import 'package:food_truck_frontend/widgets/custom_icon_button.dart';
 
 // ignore: must_be_immutable
 class AppbarTrailingIconbutton extends StatelessWidget {

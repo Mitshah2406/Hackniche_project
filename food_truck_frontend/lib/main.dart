@@ -27,7 +27,7 @@ class MyApp extends ConsumerWidget {
       builder: (context, orientation, deviceType) {
         return MaterialApp(
           theme: theme,
-          title: 'mit_s_application3',
+          title: 'food_truck_frontend',
           navigatorKey: NavigatorService.navigatorKey,
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [
