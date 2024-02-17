@@ -16,45 +16,26 @@ Order.prototype.cleanUp = function () {
     price: this.data.price,
     orderItem: this.data.orderItem,
     orderDeadline: this.data.deadline,
+    status: "pending", //pending //completed //cancelled
     orderDate: new Date(),
   };
 };
 
-Order.prototype.createOrder = async function () {
+Order.prototype.placeOrder = async function () {
   this.cleanUp();
   await orderCollection.insertOne(this.data);
 };
 
-// Order.prototype.orderDetails = function () {
-//   return new Promise((resolve, reject) => {
-//     this.cleanUp();
-//     orderCollection
-//       .findOne({ email: this.data.email })
-//       .then((attemptedUser) => {
-//         console.log("Found! based on email");
-//         console.log(attemptedUser);
+Order.prototype.getOrdersByFoodTruckId = async function(ftId){
+  const recievedOrders = await orderCollection.find({status: "pending"}).toArray()
+  return recievedOrders
+}
 
-//         if (
-//           attemptedUser &&
-//           bcrypt.compareSync(this.data.password, attemptedUser.password)
-//         ) {
-//           this.data = attemptedUser;
-//           console.log("This dataa");
-//           console.log(this.data);
+Order.prototype.completeOrder = async function(orderId){
+   await orderCollection.findOneAndUpdate({_id: new ObjectId(orderId)}, {$set:{status: "completed"}}).toArray()
+  return recievedOrders
+}
 
-//           resolve(this.data);
-//         } else {
-//           console.log("Invalidd");
 
-//           reject("Invalid username / password.");
-//         }
-//       })
-//       .catch(function () {
-//         console.log("Failed");
-
-//         reject("Please try again later.");
-//       });
-//   });
-// };
 
 module.exports = Order;

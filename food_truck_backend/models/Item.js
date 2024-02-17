@@ -12,6 +12,9 @@ let Item = function (data) {
 Item.prototype.cleanUp = function () {
   this.data = {
     allItems: this.data.allItems,
+    // {
+// itemName: qty
+    // }
   };
 };
 
@@ -31,36 +34,13 @@ Item.prototype.readItems = function () {
   return items;
 };
 
-// Order.prototype.orderDetails = function () {
-//   return new Promise((resolve, reject) => {
-//     this.cleanUp();
-//     orderCollection
-//       .findOne({ email: this.data.email })
-//       .then((attemptedUser) => {
-//         console.log("Found! based on email");
-//         console.log(attemptedUser);
+Item.prototype.subtractItems = async function(itemId, itemName){
+  const filter = { _id: ObjectId(itemId) };
+  const update = { $inc: { [`allItems.${itemName}`]: -qtyToSubtract } }; // Subtract qtyToSubtract from the item's quantity
 
-//         if (
-//           attemptedUser &&
-//           bcrypt.compareSync(this.data.password, attemptedUser.password)
-//         ) {
-//           this.data = attemptedUser;
-//           console.log("This dataa");
-//           console.log(this.data);
+  const options = { returnOriginal: false }; // Return the updated document
 
-//           resolve(this.data);
-//         } else {
-//           console.log("Invalidd");
-
-//           reject("Invalid username / password.");
-//         }
-//       })
-//       .catch(function () {
-//         console.log("Failed");
-
-//         reject("Please try again later.");
-//       });
-//   });
-// };
+  const result = await collection.findOneAndUpdate(filter, update, options);
+}
 
 module.exports = Item;

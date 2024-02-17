@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
-const customerRouter = require("./routes/customerRouter");
+const router = require("./router");
 const fileUpload = require("express-fileupload");
 
 const app = express();
@@ -65,7 +65,7 @@ const path = require("path");
 // var favicon = require('serve-favicon');
 // app.use(favicon(path.join(__dirname, 'public', 'new.ico')));
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use("/", customerRouter);
+app.use("/", router);
 var fileupload = require("express-fileupload");
 app.use(fileupload());
 
