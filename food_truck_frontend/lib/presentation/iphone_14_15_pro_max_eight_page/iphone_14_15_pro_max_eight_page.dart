@@ -1,3 +1,5 @@
+import 'package:food_truck_frontend/presentation/item_details_screen/item_details_screen.dart';
+
 import 'notifier/iphone_14_15_pro_max_eight_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:food_truck_frontend/core/app_export.dart';
@@ -472,79 +474,85 @@ class Iphone1415ProMaxEightPageState
     return SizedBox(
       height: 257.v,
       width: 396.h,
-      child: Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          Align(
-            alignment: Alignment.topCenter,
-            child: Padding(
-              padding: EdgeInsets.only(
-                right: 2.h,
-                bottom: 230.v,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "lbl_weekly_special".tr,
-                    style: theme.textTheme.titleMedium,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 3.v),
-                    child: Text(
-                      "lbl_see_all".tr,
-                      style: CustomTextStyles.bodyMediumPrimary,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => ItemDetailsPage()));
+        },
+        child: Stack(
+          alignment: Alignment.bottomLeft,
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  right: 2.h,
+                  bottom: 230.v,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "lbl_weekly_special".tr,
+                      style: theme.textTheme.titleMedium,
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 3.v),
+                      child: Text(
+                        "lbl_see_all".tr,
+                        style: CustomTextStyles.bodyMediumPrimary,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: 4.h,
-              top: 70.v,
-              right: 217.h,
+            Padding(
+              padding: EdgeInsets.only(
+                left: 4.h,
+                top: 70.v,
+                right: 217.h,
+              ),
+              child: _buildFour(
+                context,
+                title: "msg_prawn_mix_salad".tr,
+                price: "lbl_5_98".tr,
+              ),
             ),
-            child: _buildFour(
-              context,
-              title: "msg_prawn_mix_salad".tr,
-              price: "lbl_5_98".tr,
+            Padding(
+              padding: EdgeInsets.only(
+                left: 219.h,
+                top: 70.v,
+                right: 2.h,
+              ),
+              child: _buildFour(
+                context,
+                title: "lbl_bbq_chicken".tr,
+                price: "lbl_11_98".tr,
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: 219.h,
-              top: 70.v,
-              right: 2.h,
+            CustomImageView(
+              imagePath: ImageConstant.imgImage7,
+              height: 137.v,
+              width: 132.h,
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.only(
+                left: 18.h,
+                top: 25.v,
+              ),
             ),
-            child: _buildFour(
-              context,
-              title: "lbl_bbq_chicken".tr,
-              price: "lbl_11_98".tr,
+            CustomImageView(
+              imagePath: ImageConstant.imgImage3,
+              height: 137.adaptSize,
+              width: 137.adaptSize,
+              alignment: Alignment.topRight,
+              margin: EdgeInsets.only(
+                top: 25.v,
+                right: 21.h,
+              ),
             ),
-          ),
-          CustomImageView(
-            imagePath: ImageConstant.imgImage7,
-            height: 137.v,
-            width: 132.h,
-            alignment: Alignment.topLeft,
-            margin: EdgeInsets.only(
-              left: 18.h,
-              top: 25.v,
-            ),
-          ),
-          CustomImageView(
-            imagePath: ImageConstant.imgImage3,
-            height: 137.adaptSize,
-            width: 137.adaptSize,
-            alignment: Alignment.topRight,
-            margin: EdgeInsets.only(
-              top: 25.v,
-              right: 21.h,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
