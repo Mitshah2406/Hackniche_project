@@ -20,7 +20,7 @@ Schedule.prototype.createSchedule = async function () {
   this.cleanUp();
   await scheduleCollection.insertOne(this.data);
 };
-Menu.prototype.readSchedule = function () {
+Schedule.prototype.readSchedule = function () {
   const schedule = scheduleCollection.find({}).toArray();
   return schedule;
 };
