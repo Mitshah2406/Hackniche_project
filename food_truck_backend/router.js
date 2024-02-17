@@ -5,6 +5,7 @@ const foodTruckController = require("./controllers/foodTruckController");
 const orderController = require("./controllers/orderController.js");
 const reviewController = require("./controllers/reviewController.js");
 
+const customerController = require("./controllers/customerController.js");
 //Admin related apps
 router.get("/", foodTruckController.home);
 
@@ -13,6 +14,7 @@ router.post("/place-order", orderController.placeOrder);
 router.post("/complete-order", orderController.completeOrder);
 router.post("/add-review", reviewController.addReview);
 router.get("/get-review", reviewController.getReview);
+router.post("/register-customer", customerController.registerCustomer);
 
 // 404
 router.get("*", (req, res) => {

@@ -4,6 +4,7 @@ class ImageConstant {
 
   // iPhone 14 & 15 Pro Max - Nine images
   static String imgBack2 = '$imagePath/img_back_2.png';
+  static String itemDetailsPageImage = 'assets/images/item_detail_image.png';
 
   static String imgMenu1 = '$imagePath/img_menu_1.png';
 
