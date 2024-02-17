@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "468760916038",
+    "project_id": "ar-hackniche",
+    "storage_bucket": "ar-hackniche.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468760916038:android:663fbcfe578c9d5f635a47",
+        "android_client_info": {
+          "package_name": "com.kushkapadia.arapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRK5q30qqsRLrAA6MMii2t4C5A5Mt4CMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

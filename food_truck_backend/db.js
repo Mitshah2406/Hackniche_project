@@ -1,19 +1,17 @@
-const { MongoClient } = require('mongodb')
+const { MongoClient } = require("mongodb");
 
-const dotenv = require('dotenv')
-dotenv.config()
+const dotenv = require("dotenv");
+dotenv.config();
 
-const client = new MongoClient(process.env.CONNECTIONSTRING)
+const client = new MongoClient(process.env.CONNECTIONSTRING);
 
 async function start() {
-  await client.connect()
+  await client.connect();
 
-  console.log("Connected")
-  module.exports = client.db()
-  const app = require('./app')
-  app.listen(process.env.PORT)
-
-
+  console.log("Connected");
+  module.exports = client.db();
+  const app = require("./app");
+  app.listen(process.env.PORT);
 }
 
-start()
+start();
