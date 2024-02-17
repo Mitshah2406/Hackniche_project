@@ -17,6 +17,8 @@ Order.prototype.cleanUp = function () {
     orderItem: this.data.orderItem,
     orderDeadline: this.data.deadline,
     status: "pending", //pending //completed //cancelled
+    foodPref: this.data.preference,
+    addon: this.data.addon,
     orderDate: new Date(),
   };
 };

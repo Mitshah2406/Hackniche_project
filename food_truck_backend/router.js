@@ -4,7 +4,7 @@ const router = express.Router();
 const foodTruckController = require("./controllers/foodTruckController");
 const orderController = require("./controllers/orderController.js");
 const reviewController = require("./controllers/reviewController.js");
-
+const menuController = require('./controllers/menuController.js')
 const customerController = require("./controllers/customerController.js");
 //Admin related apps
 router.get("/", foodTruckController.home);
@@ -16,6 +16,33 @@ router.post("/add-review", reviewController.addReview);
 router.get("/get-review", reviewController.getReview);
 router.post("/register-customer", customerController.registerCustomer);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.get('/get-menu-items', menuController)
 // 404
 router.get("*", (req, res) => {
   res.render("404");
