@@ -15,13 +15,13 @@ Customer.prototype.cleanUp = function () {
     mobile: this.data.mobile,
     email: this.data.email,
     password: this.data.password,
-    orderData: this.data.orderData,
+    // orderData: this.data.orderData,
   };
 };
 
 Customer.prototype.createCustomer = async function () {
   this.cleanUp();
-  await FoodTrucksCollection.insertOne(this.data);
+  await customerCollection.insertOne(this.data);
 };
 
 Customer.prototype.login = function () {

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Reviews</title>
+  </head>
+  <body>
+    <h1>Customer Reviews</h1>
+    <ul>
+      <% reviews.forEach(review => { %>
+      <li>
+        <strong>Review ID:</strong> <%= review._id %><br />
+        <strong>Customer ID:</strong> <%= review.customerId %><br />
+        <strong>Customer Name:</strong> <%= review.custName %><br />
+        <strong>Comment:</strong> <%= review.comment %><br />
+        <strong>Rating:</strong> <%= review.rating %><br />
+        <hr />
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

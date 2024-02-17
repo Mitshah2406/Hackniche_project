@@ -19,8 +19,9 @@ Review.prototype.addReview = async function (req, res) {
   await reviewsCollection.insertOne(this.data);
 };
 
-Review.prototype.getAllReviews = async function (req, res) {
+Review.prototype.getAllReviews = async function () {
   const allreviews = await reviewsCollection.find({}).toArray();
+  console.log(allreviews);
   return allreviews;
 };
 
