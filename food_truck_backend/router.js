@@ -18,7 +18,7 @@ router.post("/add-review", reviewController.addReview);
 router.get("/get-review", reviewController.getReview);
 router.post("/register-customer", customerController.registerCustomer);
 router.post("/create-schedule", scheduleController.addSchedule);
-router.get("/get-schedule", scheduleController.getSchedules);
+router.get("/get-schedule", scheduleController.readSchedule);
 router.get("/complete-order-form", (req, res) => {
   res.render("completeOrder");
 });
