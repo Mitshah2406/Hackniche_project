@@ -1,32 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck_frontend/screens/HomeScreen.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'core/app_export.dart';
 
+var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  Future.wait([
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]),
+    PrefUtils().init()
+  ]).then((value) {
+    runApp(ProviderScope(child: MyApp()));
+  });
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
+class MyApp extends ConsumerWidget {
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light().copyWith(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 147, 229, 250),
-          brightness: Brightness.light,
-          surface: const Color.fromARGB(255, 42, 51, 59),
-        ),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 50, 58, 60),
-      ),
-      home: const HomeScreen(),
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
+    final themeType = ref.watch(themeNotifier).themeType;
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          theme: theme,
+          title: 'mit_s_application3',
+          navigatorKey: NavigatorService.navigatorKey,
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: [
+            AppLocalizationDelegate(),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            Locale(
+              'en',
+              '',
+            ),
+          ],
+          initialRoute: AppRoutes.initialRoute,
+          routes: AppRoutes.routes,
+        );
+      },
     );
   }
 }
