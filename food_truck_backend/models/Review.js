@@ -11,15 +11,17 @@ Review.prototype.cleanUp = function () {
     customerId: new ObjectId(this.data.customerId),
     custName: this.data.name,
     comment: this.data.comment,
-    rating: Number(this.data.rating)
+    rating: Number(this.data.rating),
   };
 };
 
-Review.prototype.addReview = async function(req, res){
-  await reviewsCollection.insertOne(this.data)
-}
+Review.prototype.addReview = async function (req, res) {
+  await reviewsCollection.insertOne(this.data);
+};
 
-Review.prototype.getAllReviews = async function(req, res){
- const allreviews = await reviewsCollection.find({}).toArray()
- return allreviews
-}
+Review.prototype.getAllReviews = async function (req, res) {
+  const allreviews = await reviewsCollection.find({}).toArray();
+  return allreviews;
+};
+
+module.exports = Review;

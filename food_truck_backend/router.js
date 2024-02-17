@@ -1,18 +1,23 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const foodTruckController = require('./controllers/foodTruckController')
-const orderController = require('./controllers/orderController.js')
+const foodTruckController = require("./controllers/foodTruckController");
+const orderController = require("./controllers/orderController.js");
+const reviewController = require("./controllers/reviewController.js");
+
+const customerController = require("./controllers/customerController.js");
 //Admin related apps
-router.get('/', foodTruckController.home)
+router.get("/", foodTruckController.home);
 
-//Cusatomer related Routes (API)
-router.post('/place-order', orderController.placeOrder)
-router.post('/complete-order', )
-
+//Customer related Routes (API)
+router.post("/place-order", orderController.placeOrder);
+router.post("/complete-order", orderController.completeOrder);
+router.post("/add-review", reviewController.addReview);
+router.get("/get-review", reviewController.getReview);
+router.post("/register-customer", customerController.registerCustomer);
 
 // 404
-router.get('*', (req,res)=>{
-  res.render("404")
-})
-module.exports = router
+router.get("*", (req, res) => {
+  res.render("404");
+});
+module.exports = router;
