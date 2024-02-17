@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_truck_frontend/widgets/cart_item.dart';
+import 'package:food_truck_frontend/widgets/slider_btn.dart';
 
 class CartScreen extends ConsumerStatefulWidget {
   const CartScreen({super.key});
@@ -126,6 +127,24 @@ class CartScreenState extends ConsumerState<CartScreen> {
                             fontSize: 16),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  SliderButton(
+                    text: "Place Order",
+                    onSlide: () async {
+                      {
+                        await Future.delayed(
+                          const Duration(seconds: 2),
+                          () => Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (ctx) => CartScreen(),
+                            ),
+                          ),
+                        );
+                      }
+                    },
                   ),
                 ],
               )
