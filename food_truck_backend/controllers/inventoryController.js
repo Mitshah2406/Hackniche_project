@@ -9,5 +9,5 @@ exports.addInventoryItem = async function (req, res) {
 exports.readInventory = async function (req, res) {
   let inventory = new Inventory();
   let inventoryItems = await inventory.readInventory();
-  res.send(inventoryItems);
+  res.render("inventory", { response: inventoryItems });
 };

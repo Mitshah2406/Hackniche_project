@@ -36,7 +36,7 @@ Order.prototype.getOrdersByFoodTruckId = async function (ftId) {
   const recievedOrders = await orderCollection
     .find({ status: "pending" })
     .toArray();
-    console.log(recievedOrders+"esytd")
+  console.log(recievedOrders + "esytd");
   return recievedOrders;
 };
 
@@ -118,10 +118,10 @@ Order.prototype.completeOrder = async function (orderId) {
 
     // If you want to update the status to "completed"
     // Uncomment the following lines
-    // await orderCollection.findOneAndUpdate(
-    //   { _id: new ObjectId(orderId) },
-    //   { $set: { status: "completed" } }
-    // );
+    await orderCollection.findOneAndUpdate(
+      { _id: new ObjectId(orderId) },
+      { $set: { status: "completed" } }
+    );
   } else {
     console.log("Order or orderItem not found");
   }
