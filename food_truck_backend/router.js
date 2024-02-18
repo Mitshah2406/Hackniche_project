@@ -7,6 +7,8 @@ const reviewController = require("./controllers/reviewController.js");
 const menuController = require("./controllers/menuController.js");
 const customerController = require("./controllers/customerController.js");
 const scheduleController = require("./controllers/scheduleController.js");
+const inventoryController = require("./controllers/inventoryController.js");
+
 //Admin related apps
 router.get("/", foodTruckController.home);
 
@@ -24,6 +26,12 @@ router.get("/complete-order-form", (req, res) => {
 });
 router.post("/create-menu-item", menuController.addItem);
 router.get("/get-menu-items", menuController.readMenu);
+
+router.post("/create-inventory", inventoryController.addInventoryItem);
+router.get("/get-inventory", inventoryController.readInventory);
+
+router.post("/create-food-truck", foodTruckController.createAdmin);
+
 // 404
 router.get("*", (req, res) => {
   res.render("404");
