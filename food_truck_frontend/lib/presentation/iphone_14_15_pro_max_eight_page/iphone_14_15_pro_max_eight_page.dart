@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:food_truck_frontend/models/menuitem.dart';
 import 'package:food_truck_frontend/presentation/item_details_screen/item_details_screen.dart';
 import 'package:food_truck_frontend/providers/data_providers.dart';
+import 'package:food_truck_frontend/services/constants.dart';
 
 import 'notifier/iphone_14_15_pro_max_eight_notifier.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +14,7 @@ import 'package:food_truck_frontend/widgets/app_bar/appbar_subtitle_one.dart';
 import 'package:food_truck_frontend/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:food_truck_frontend/widgets/app_bar/custom_app_bar.dart';
 import 'package:food_truck_frontend/widgets/custom_search_view.dart';
+import 'package:http/http.dart' as http;
 
 // ignore_for_file: must_be_immutable
 class Iphone1415ProMaxEightPage extends ConsumerStatefulWidget {
@@ -488,124 +492,153 @@ class Iphone1415ProMaxEightPageState
       ),
     );
   }
+myFunc() async{
+   
+    final response = await http.get(
+      Uri.parse(Constants.BASE_URL),
+    );
+    if (response.statusCode == 200) {
+      final List res = jsonDecode(response.body);
+      // return res.map((e) => MenuItem.fromJson(e)).toList();
+      print(res);
 
+    } else {
+      throw Exception('Failed to load menu items');
+    }
+  
+}
   /// Section Widget
   Widget _buildPromoSection(BuildContext context, List<MenuItem> menuData) {
-    return SizedBox(
-      height: 257.v,
-      width: 396.h,
-      child: GestureDetector(
-        onTap: () {
-          // Navigator.of(context)
-          //     .push(MaterialPageRoute(builder: (context) => ItemDetailsPage()));
-        },
-        child: Stack(
-          alignment: Alignment.bottomLeft,
-          children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  right: 2.h,
-                  bottom: 230.v,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "lbl_weekly_special".tr,
-                      style: theme.textTheme.titleMedium,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 3.v),
-                      child: Text(
-                        "lbl_see_all".tr,
-                        style: CustomTextStyles.bodyMediumPrimary,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            GestureDetector(
-              // onTap: () {
-              //   Navigator.of(context).push(MaterialPageRoute(
-              //       builder: (context) =>
-              //           ItemDetailsPage(menuItem: menuData[0])));
-              // },
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: 4.h,
-                  top: 70.v,
-                  right: 217.h,
-                ),
-                child: _buildFour(
-                  context,
-                  title: menuData[0].itemName!,
-                  price: menuData[0].price.toString(),
-                ),
-              ),
-            ),
-            GestureDetector(
-              // onTap: () {
-              //   Navigator.of(context).push(MaterialPageRoute(
-              //       builder: (context) =>
-              //           ItemDetailsPage(menuItem: menuData[1])));
-              // },
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: 219.h,
-                  top: 70.v,
-                  right: 2.h,
-                ),
-                child: _buildFour(
-                  context,
-                  title: menuData[1].itemName!,
-                  price: menuData[1].price.toString(),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        ItemDetailsPage(menuItem: menuData[0]),
-                  ),
-                );
-              },
-              child: CustomImageView(
-                imagePath: ImageConstant.imgImage7,
-                height: 137.v,
-                width: 132.h,
-                alignment: Alignment.topLeft,
-                margin: EdgeInsets.only(
-                  left: 18.h,
-                  top: 25.v,
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        ItemDetailsPage(menuItem: menuData[1])));
-              },
-              child: CustomImageView(
-                imagePath: ImageConstant.imgImage3,
-                height: 137.adaptSize,
-                width: 137.adaptSize,
-                alignment: Alignment.topRight,
-                margin: EdgeInsets.only(
-                  top: 25.v,
-                  right: 21.h,
-                ),
-              ),
-            ),
-          ],
+    myFunc();
+    print("Menu Data Length: ${menuData.length}");
+    if (menuData.isEmpty) {
+      return SizedBox(
+        height: 257.v,
+        width: 396.h,
+        child: Center(
+          child: Text(
+            "No promo items available",
+            style: TextStyle(fontSize: 16),
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      return SizedBox(
+        height: 257.v,
+        width: 396.h,
+        child: GestureDetector(
+          onTap: () {
+            // Navigator.of(context)
+            //     .push(MaterialPageRoute(builder: (context) => ItemDetailsPage()));
+          },
+          child: Stack(
+            alignment: Alignment.bottomLeft,
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    right: 2.h,
+                    bottom: 230.v,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "lbl_weekly_special".tr,
+                        style: theme.textTheme.titleMedium,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 3.v),
+                        child: Text(
+                          "lbl_see_all".tr,
+                          style: CustomTextStyles.bodyMediumPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                // onTap: () {
+                //   Navigator.of(context).push(MaterialPageRoute(
+                //       builder: (context) =>
+                //           ItemDetailsPage(menuItem: menuData[0])));
+                // },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 4.h,
+                    top: 70.v,
+                    right: 217.h,
+                  ),
+                  child: _buildFour(
+                    context,
+                    title: menuData[0].itemName!,
+                    price: menuData[0].price.toString(),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                // onTap: () {
+                //   Navigator.of(context).push(MaterialPageRoute(
+                //       builder: (context) =>
+                //           ItemDetailsPage(menuItem: menuData[1])));
+                // },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 219.h,
+                    top: 70.v,
+                    right: 2.h,
+                  ),
+                  child: _buildFour(
+                    context,
+                    title: menuData[1].itemName!,
+                    price: menuData[1].price.toString(),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ItemDetailsPage(menuItem: menuData[0]),
+                    ),
+                  );
+                },
+                child: CustomImageView(
+                  imagePath: ImageConstant.imgImage7,
+                  height: 137.v,
+                  width: 132.h,
+                  alignment: Alignment.topLeft,
+                  margin: EdgeInsets.only(
+                    left: 18.h,
+                    top: 25.v,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          ItemDetailsPage(menuItem: menuData[1])));
+                },
+                child: CustomImageView(
+                  imagePath: ImageConstant.imgImage3,
+                  height: 137.adaptSize,
+                  width: 137.adaptSize,
+                  alignment: Alignment.topRight,
+                  margin: EdgeInsets.only(
+                    top: 25.v,
+                    right: 21.h,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 
   /// Common widget
