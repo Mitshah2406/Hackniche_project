@@ -1,9 +1,10 @@
 const Schedule = require("../models/Schedule");
 
 exports.addSchedule = async function (req, res) {
+  console.log( req.body)
   let schedule = new Schedule(req.body);
   await schedule.createSchedule();
-  res.send("Added");
+  res.redirect('/get-all-orders');
 };
 
 exports.readSchedule = async function (req, res) {

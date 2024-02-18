@@ -11,8 +11,9 @@ let Schedule = function (data) {
 
 Schedule.prototype.cleanUp = function () {
   this.data = {
-    timeSlot: this.data.timeSlot,
-    location: this.data.location,
+    startTime: this.data.startTime,
+    endTime: this.data.endTime,
+    landmark: this.data.landmark,
   };
 };
 

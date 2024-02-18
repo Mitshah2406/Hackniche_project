@@ -69,21 +69,37 @@
                                 <th>Addon</th>
                                 <th>Status</th>
                                 <th>Deadline</th>
+                                <th>Action</th>
                              </tr>
                           </thead>
                           <tbody>
-                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
+                           <% orders.forEach((order)=>{ %>
+                           
+                                <tr>
+                                <td><%= order.customerName %></td>
+                                <td>
+                        <%  order.orderItem.forEach((item)=>{ %>
+                           <%= item.itemName %>
+                           <br>                 
+                
+                        <%  }) %>
+                      </td>
+                      <td>
+                        <%  order.orderItem.forEach((item)=>{ %>
+                           <%= item.qty %>
+                           <br>                 
+                
+                        <%  }) %>
+                      </td>
+                                <td><%= order.price.$numberInt %></td>
+                                <td><%= order.preference %></td>
+                                <td><%= order.addon %></td>
+                                <td style="color: red;"><%= order.status.toUpperCase() %></td>
+                                <td><%= order.orderDeadline.getDate()%>/<%= order.orderDeadline.getMonth() + 1 %>/<%= order.orderDeadline.getFullYear()%>-<%= order.orderDeadline.getUTCHours()%>:<%= order.orderDeadline.getMinutes() %></td>
+                                <td><a href="/display-qr-page/<%=order._id%>"><Button class="btn btn-primary">Complete</Button></a></td>         
                              </tr>
-                          
-                          
+                             
+                          <% }) %>
                           </tbody>
                           <tfoot>
                              <tr>
@@ -95,6 +111,7 @@
                               <th>Addon</th>
                               <th>Status</th>
                               <th>Deadline</th>
+                              <th>Action</th>
                              </tr>
                           </tfoot>
                        </table>

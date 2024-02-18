@@ -36,6 +36,7 @@ Order.prototype.getOrdersByFoodTruckId = async function (ftId) {
   const recievedOrders = await orderCollection
     .find({ status: "pending" })
     .toArray();
+    console.log(recievedOrders+"esytd")
   return recievedOrders;
 };
 

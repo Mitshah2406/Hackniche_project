@@ -3,7 +3,7 @@ const Order = require("../models/Order");
 exports.completeOrder = async function (req, res) {
   let order = new Order();
   order.completeOrder(req.body.orderId);
-  res.json({ message: "Order marked as completed" });
+  res.send("Success");
 };
 
 exports.getAllOrders = async function (req, res) {
@@ -12,6 +12,7 @@ exports.getAllOrders = async function (req, res) {
     if (!data) {
       return res.status(404).json({ message: "No orders found" });
     }
+    console.log(data)
     res.render("orders", { orders: data });
   });
 };
