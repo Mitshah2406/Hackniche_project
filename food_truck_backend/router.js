@@ -27,16 +27,16 @@ function fileToGenerativePart(path, mimeType) {
 
 router.post("/generate-gemini-caption", async (req, res) => {
   try {
-    const public = path.join(__dirname, './public')
+    const public = path.join(__dirname, "./public");
 
-    const file = req.files.image
+    const file = req.files.image;
     console.log(file);
-    const fileName = new Date().getTime().toString() + path.extname(file.name)
-    const savePath = path.join(__dirname, 'public' , 'uploads', fileName)
-    await file.mv(savePath)
-    
-    console.log(savePath)
-    await data.save()
+    const fileName = new Date().getTime().toString() + path.extname(file.name);
+    const savePath = path.join(__dirname, "public", "uploads", fileName);
+    await file.mv(savePath);
+
+    console.log(savePath);
+    await data.save();
     const { imagePath } = savePath;
     const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
     const prompt = "Suggest me caption for this image";

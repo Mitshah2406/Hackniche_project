@@ -23,7 +23,7 @@
                     <th>Quantity</th>
                     <th>Days to Expire</th>
                     <th>Recipe</th>
-                    <!-- New column for the generated recipe -->
+                    <!-- New column for the button -->
                   </tr>
                 </thead>
                 <tbody>
@@ -45,23 +45,25 @@
                     <td id="<%= `recipe-${inventoryItem.itemName}` %>">
                       Loading...
                     </td>
-                    <!-- Placeholder for the recipe -->
                   </tr>
                   <script>
                     // JavaScript code to fetch and update the recipe for each item
-                    const itemName = '<%= inventoryItem.itemName %>';
-                    const quantity = '<%= inventoryItem.quantity %>';
+                    const itemName<%= inventoryItem.itemName %> = '<%= inventoryItem.itemName %>';
+                    const quantity<%= inventoryItem.itemName %> = '<%= inventoryItem.quantity %>';
 
-                    fetch(`/generate-recipe?itemName=${itemName}&quantity=${quantity}`)
-                      .then(response => response.json())
-                      .then(data => {
-                        document.getElementById(`<%= `recipe-${itemName}` %>`).textContent = data.recipe;
+                    fetch(`/generate-recipe?itemName=${itemName<%= inventoryItem.itemName %>}&quantity=${quantity<%= inventoryItem.itemName %>}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById(`<%= `recipe-${inventoryItem.itemName}` %>`).textContent = data.recipe;
                       })
-                      .catch(error => console.error(`Error fetching recipe for ${itemName}: ${error.message}`));
+                      .catch(error => console.error(`Error fetching recipe for ${inventoryItem.itemName}: ${error.message}`));
                   </script>
                   <% } %>
                 </tbody>
               </table>
+              <button class="btn btn-info" onclick="showRecipe()">
+                Show Recipe
+              </button>
             </div>
           </div>
         </div>
@@ -70,4 +72,33 @@
   </div>
 </div>
 
+<!-- Recipe Display Section -->
+<!-- <div id="recipeDisplay" class="mt-3">
+  <h4>Recipe Display</h4>
+  <p id="selectedRecipe">Select an item to view the recipe.</p>
+</div> -->
+
 <%- include('./includes/footer.ejs') %>
+
+<script>
+  // JavaScript function to show the recipe for a specific item
+  function showRecipe(itemName) {
+    const recipeContainer = document.getElementById("recipeDisplay");
+    const selectedRecipe = document.getElementById("selectedRecipe");
+
+    // Fetch and update the recipe for the selected item
+    fetch(
+      `/generate-recipe?itemName=${itemName}&quantity=${inventoryItem.quantity}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        selectedRecipe.textContent = `Recipe for ${itemName}: ${data.recipe}`;
+      })
+      .catch((error) =>
+        console.error(`Error fetching recipe for ${itemName}: ${error.message}`)
+      );
+
+    // Show the recipe display container
+    recipeContainer.style.display = "block";
+  }
+</script>
