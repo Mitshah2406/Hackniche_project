@@ -123,17 +123,17 @@ class Iphone1415ProMaxEightPageState
             left: 8.h,
             top: 32.v,
             right: 8.h,
-          ), onTap: (){},
+          ),
         ),
         AppbarTrailingImage(
           onTap: () {},
           imagePath: ImageConstant.imgBell1,
-          margin: EdgeInsets.fromLTRB(103.h, 10.v, 8.h, 7.v), onTap: (){},
+          margin: EdgeInsets.fromLTRB(103.h, 10.v, 8.h, 7.v),
         ),
         AppbarTrailingImage(
           onTap: () {},
           imagePath: ImageConstant.imgSearchInterfaceSymbol,
-          margin: EdgeInsets.fromLTRB(20.h, 10.v, 28.h, 7.v), onTap: (){},
+          margin: EdgeInsets.fromLTRB(20.h, 10.v, 28.h, 7.v),
         ),
       ],
     );
