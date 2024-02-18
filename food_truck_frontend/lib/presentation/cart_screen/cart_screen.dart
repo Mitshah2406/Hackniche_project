@@ -153,7 +153,7 @@ class CartScreenState extends ConsumerState<CartScreen> {
                     height: 30,
                   ),
                   SliderButton(
-                    text: "Place Order",
+                    text: "Order Now",
                     onSlide: () async {
                       {
                         print("api call");
@@ -165,7 +165,8 @@ class CartScreenState extends ConsumerState<CartScreen> {
                           body: jsonEncode(<String, dynamic>{
                             'customerId': '1feryur3434343uhfufdnndndfr33', //
                             'customerName': 'John Doe',
-                            'orderDeadline': new DateTime.now(),
+                            'orderDeadline':
+                                new DateTime.now().toIso8601String(),
                             'price': widget.price,
                             'addon': widget.addOn,
                             'preference': widget.preference,
@@ -174,12 +175,9 @@ class CartScreenState extends ConsumerState<CartScreen> {
                             ]
                           }),
                         );
-                        await Future.delayed(
-                          const Duration(seconds: 2),
-                          () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (ctx) => AfterOrderScreen(),
-                            ),
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (ctx) => AfterOrderScreen(),
                           ),
                         );
                       }
