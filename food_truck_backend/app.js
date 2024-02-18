@@ -67,6 +67,10 @@ const path = require("path");
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use("/", router);
 var fileupload = require("express-fileupload");
+app.use(fileUpload({
+  createParentPath: true
+}))
+
 app.use(fileupload());
 
 module.exports = app;

@@ -30,22 +30,45 @@ class Iphone1415ProMaxEightPage extends ConsumerStatefulWidget {
 
 class Iphone1415ProMaxEightPageState
     extends ConsumerState<Iphone1415ProMaxEightPage> {
+        List<MenuItem> menuList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData(); // Fetch data when the widget initializes
+  }
+
+  void fetchData() async {
+    try {
+      final response = await http.get(Uri.parse(Constants.BASE_URL));
+      if (response.statusCode == 200) {
+        final  res = jsonDecode(response.body);
+        setState(() {
+          menuList = res ;
+        });
+      } else {
+        throw Exception('Failed to load menu items');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    final menudata = ref.watch(menuDataProvider);
-    List<MenuItem> menuList = [];
-    menudata.when(
-      data: (data) {
-        menuList = data.map((e) => (e)).toList();
-        print(menuList);
-      },
-      loading: () {
-        print("loading");
-      },
-      error: (error, stack) {
-        print(error);
-      },
-    );
+    // final menudata = ref.watch(menuDataProvider);
+    // List<MenuItem> menuList = [];
+    // menudata.when(
+    //   data: (data) {
+    //     menuList = data.map((e) => (e)).toList();
+    //     print(menuList);
+    //   },
+    //   loading: () {
+    //     print("loading");
+    //   },
+    //   error: (error, stack) {
+    //     print(error);
+    //   },
+    // );
 
     return SafeArea(
       child: Scaffold(
@@ -509,7 +532,7 @@ myFunc() async{
 }
   /// Section Widget
   Widget _buildPromoSection(BuildContext context, List<MenuItem> menuData) {
-    myFunc();
+    // myFunc();
     print("Menu Data Length: ${menuData.length}");
     if (menuData.isEmpty) {
       return SizedBox(
