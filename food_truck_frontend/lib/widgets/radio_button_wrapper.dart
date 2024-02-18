@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class RadioButtonWrapper extends StatefulWidget {
   final String title;
   final List<String> radioButtons;
+  final void Function(int) onChange;
 
   const RadioButtonWrapper({
     super.key,
     required this.title,
     required this.radioButtons,
+    required this.onChange,
   });
 
   @override
@@ -78,6 +80,7 @@ class _RadioButtonWrapperState extends State<RadioButtonWrapper> {
                           setState(() {
                             selectedOption = value!;
                           });
+                          widget.onChange(selectedOption);
                         },
                       ),
                     ],
@@ -115,6 +118,7 @@ class _RadioButtonWrapperState extends State<RadioButtonWrapper> {
                           setState(() {
                             selectedOption = value!;
                           });
+                          widget.onChange(selectedOption);
                         },
                       ),
                     ],
@@ -152,6 +156,7 @@ class _RadioButtonWrapperState extends State<RadioButtonWrapper> {
                           setState(() {
                             selectedOption = value!;
                           });
+                          widget.onChange(selectedOption);
                         },
                       ),
                     ],
