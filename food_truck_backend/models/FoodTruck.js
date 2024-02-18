@@ -1,4 +1,4 @@
-const FoodTrucksCollection = require("../db").collection("admins");
+const FoodTrucksCollection = require("../db").collection("foodtruck");
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
 const md5 = require("md5");

@@ -7,6 +7,8 @@ const reviewController = require("./controllers/reviewController.js");
 const menuController = require("./controllers/menuController.js");
 const customerController = require("./controllers/customerController.js");
 const scheduleController = require("./controllers/scheduleController.js");
+const inventoryController = require("./controllers/inventoryController.js");
+
 //Admin related apps
 router.get("/", foodTruckController.home);
 
@@ -28,13 +30,16 @@ router.get("/display-schedule-form", (req, res) => {
 router.post("/create-menu-item", menuController.addItem);
 router.get("/get-menu-items", menuController.readMenu);
 
-router.get("/display-cluster-page", (req, res)=>{
-  res.render("cluster-page")
+router.post("/create-inventory", inventoryController.addInventoryItem);
+router.get("/get-inventory", inventoryController.readInventory);
+
+router.post("/create-food-truck", foodTruckController.createAdmin);
+router.get("/display-cluster-page", (req, res) => {
+  res.render("cluster-page");
 });
 
-router.get("/display-qr-page/:id", (req, res)=>{
-  res.render("qrScreen",{  id: req.params.id }
-  )
+router.get("/display-qr-page/:id", (req, res) => {
+  res.render("qrScreen", { id: req.params.id });
 });
 
 // 404

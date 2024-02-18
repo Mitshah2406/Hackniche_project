@@ -24,7 +24,7 @@ class _FoodItemSizeChipsState extends State<FoodItemSizeChips> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Text(
-        "S",
+        widget.sizeString,
         style: TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 20,

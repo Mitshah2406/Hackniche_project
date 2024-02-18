@@ -3,19 +3,83 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_truck_frontend/core/app_export.dart';
+import 'package:food_truck_frontend/models/menuitem.dart';
 import 'package:food_truck_frontend/presentation/cart_screen/cart_screen.dart';
+import 'package:food_truck_frontend/widgets/counter_increment.dart';
 import 'package:food_truck_frontend/widgets/food_item_size_chips.dart';
 import 'package:food_truck_frontend/widgets/radio_button_wrapper.dart';
 import 'package:food_truck_frontend/widgets/slider_btn.dart';
 
 class ItemDetailsPage extends ConsumerStatefulWidget {
-  const ItemDetailsPage({super.key});
-
+  const ItemDetailsPage({super.key, required this.menuItem});
+  final MenuItem menuItem;
   @override
   ItemDetailsPageState createState() => ItemDetailsPageState();
 }
 
 class ItemDetailsPageState extends ConsumerState<ItemDetailsPage> {
+  int count = 1;
+
+  void incrementCount() {
+    setState(() {
+      count++;
+    });
+  }
+
+  void decrementCount() {
+    setState(() {
+      if (count > 0) {
+        count--;
+      } else {
+        // Handle the case where count is already less than 1
+        // You can choose to show a message or perform any other action
+        // For example, you might want to disable the decrement button
+      }
+    });
+  }
+
+  List addOns = ["Pepper Julienned", 'Baby Spinach', 'Mushroom'];
+  List preferences = ["Jain", 'Vegetarian', 'Non vegeterian'];
+  int addOn = 0;
+  int preference = 0;
+  void onAddOnChange(int index) {
+    setState(() {
+      addOn = index;
+      // preference = index;
+    });
+  }
+
+  void onPreferenceChange(int index) {
+    setState(() {
+      // addOn = index;
+      preference = index;
+    });
+  }
+
+  // void onPreferenceChange(int index) {
+  //   if (index == 0) {
+  //     setState(() {
+  //       preference = "Jain";
+  //     });
+  //   } else if (index == 1) {
+  //     setState(() {
+  //       preference = "Vegetarian";
+  //     });
+  //   } else if (index == 2) {
+  //     setState(() {
+  //       preference = "Non Vegetarian";
+  //     });
+  //   }
+  // }
+
+  String selectedSize = ""; // Variable to store the selected size
+
+  void handleChipSelection(String size) {
+    setState(() {
+      selectedSize = size;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +104,7 @@ class ItemDetailsPageState extends ConsumerState<ItemDetailsPage> {
                   child: Transform.translate(
                     offset: Offset(0, 95), // Move image down by 50 pixels
                     child: CustomImageView(
-                      imagePath: 'assets/images/item_detail_image.png',
+                      imagePath: 'assets/images/${widget.menuItem.photo}.png',
                       width: 220,
                       height: 220,
                     ),
@@ -58,13 +122,13 @@ class ItemDetailsPageState extends ConsumerState<ItemDetailsPage> {
                   Row(
                     children: [
                       Text(
-                        "Veg Chilli Pizza",
+                        widget.menuItem.itemName!,
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 24),
                       ),
                       Spacer(),
                       Text(
-                        "\$250",
+                        "Rs.250",
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 24,
@@ -91,38 +155,27 @@ class ItemDetailsPageState extends ConsumerState<ItemDetailsPage> {
                   ),
                   Row(
                     children: [
-                      FoodItemSizeChips(sizeString: "S", onClickChip: () => {}),
+                      FoodItemSizeChips(
+                          sizeString: "S",
+                          onClickChip: () => {
+                                handleChipSelection(
+                                    "S") // Call the function to handle the chip selection
+                              }),
                       SizedBox(width: 10),
-                      FoodItemSizeChips(sizeString: "M", onClickChip: () => {}),
+                      FoodItemSizeChips(
+                          sizeString: "M",
+                          onClickChip: () => {handleChipSelection("M")}),
                       SizedBox(width: 10),
-                      FoodItemSizeChips(sizeString: "L", onClickChip: () => {}),
+                      FoodItemSizeChips(
+                          sizeString: "L",
+                          onClickChip: () => {handleChipSelection("L")}),
                       Spacer(),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        clipBehavior: Clip.hardEdge,
-                        child: Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: FaIcon(FontAwesomeIcons.minus),
-                            ),
-                            Text(
-                              "1",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: FaIcon(FontAwesomeIcons.plus),
-                            ),
-                          ],
-                        ),
-                      )
+                      CounterIncrement(
+                        // Define the variable count
+                        count: count,
+                        incCount: incrementCount,
+                        decCount: decrementCount,
+                      ),
                     ],
                   ),
                   RadioButtonWrapper(
@@ -132,10 +185,12 @@ class ItemDetailsPageState extends ConsumerState<ItemDetailsPage> {
                       'Baby Spinach',
                       'Mushroom'
                     ],
+                    onChange: onAddOnChange,
                   ),
                   RadioButtonWrapper(
                     title: "Choice of preparation",
                     radioButtons: ["Jain", 'Vegetarian', 'Non vegeterian'],
+                    onChange: onPreferenceChange,
                   ),
                   SizedBox(
                     height: 20,
@@ -146,7 +201,16 @@ class ItemDetailsPageState extends ConsumerState<ItemDetailsPage> {
                       await Future.delayed(
                         const Duration(seconds: 2),
                         () => Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (ctx) => CartScreen())),
+                          MaterialPageRoute(
+                            builder: (ctx) => CartScreen(
+                                count: count,
+                                addOn: addOns[addOn],
+                                preference: preferences[preference],
+                                itemName: widget.menuItem.itemName!,
+                                photo: widget.menuItem.photo!,
+                                price: widget.menuItem.price.toString()),
+                          ),
+                        ),
                       );
                     },
                   ),
