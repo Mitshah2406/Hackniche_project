@@ -8,6 +8,43 @@ const menuController = require("./controllers/menuController.js");
 const customerController = require("./controllers/customerController.js");
 const scheduleController = require("./controllers/scheduleController.js");
 const inventoryController = require("./controllers/inventoryController.js");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const fs = require("fs");
+
+const genAI = new GoogleGenerativeAI("AIzaSyBC3Vt5GoTwLey49cJwCKDwyeDInirQ4ic");
+
+// Gemini Routes start
+
+// Converts local file information to a GoogleGenerativeAI.Part object.
+function fileToGenerativePart(path, mimeType) {
+  return {
+    inlineData: {
+      data: Buffer.from(fs.readFileSync(path)).toString("base64"),
+      mimeType,
+    },
+  };
+}
+
+router.post("/generate-gemini-caption", async (req, res) => {
+  try {
+    const { imagePath } = req.body;
+    const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+    const prompt = "Suggest me caption for this image";
+
+    const imageParts = [fileToGenerativePart(imagePath, "image/png")];
+
+    const result = await model.generateContent([prompt, ...imageParts]);
+    const response = await result.response;
+    const text = await response.text();
+
+    res.json({ caption: text });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Gemini routes end
 
 //Admin related apps
 router.get("/", foodTruckController.home);
