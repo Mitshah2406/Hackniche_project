@@ -18,7 +18,9 @@ exports.getAllOrders = async function (req, res) {
 };
 
 exports.placeOrder = async function (req, res) {
+  console.log("Hit")
   let order = new Order(req.body);
+  console.log(req.body)
   order.placeOrder();
   res.json("send");
 };

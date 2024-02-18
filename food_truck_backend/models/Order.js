@@ -19,7 +19,7 @@ Order.prototype.cleanUp = function () {
     foodTruckId: this.data.foodTruckId,
     price: this.data.price,
     orderItem: this.data.orderItem,
-    orderDeadline: this.data.orderDeadline,
+    orderDeadline: new Date(this.data.orderDeadline),
     status: "pending", //pending //completed //cancelled
     preference: this.data.preference,
     addon: this.data.addon,
