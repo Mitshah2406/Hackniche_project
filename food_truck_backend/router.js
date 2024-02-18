@@ -44,6 +44,25 @@ router.post("/generate-gemini-caption", async (req, res) => {
   }
 });
 
+router.get("/generate-recipe", async (req, res) => {
+  try {
+    const inventoryItem = req.query.itemName;
+    const quantity = req.query.quantity;
+
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const prompt = `Write a recipe for a dish using ${quantity} ${inventoryItem}.`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const recipeText = response.text();
+
+    res.json({ recipe: recipeText });
+  } catch (error) {
+    console.error(`Error generating recipe: ${error.message}`);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // Gemini routes end
 
 //Admin related apps
