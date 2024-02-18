@@ -65,13 +65,10 @@ class Iphone1415ProMaxEightContainerScreenState
     switch (currentRoute) {
       case AppRoutes.iphone1415ProMaxEightPage:
         return Iphone1415ProMaxEightPage();
-<<<<<<< HEAD
       case AppRoutes.chat:
         return Chat();
-=======
       case AppRoutes.reviewScreen:
         return ReviewPage();
->>>>>>> 328bb978cf260fc688eafea352ba8a3cd248c7f1
       default:
         return DefaultWidget();
     }

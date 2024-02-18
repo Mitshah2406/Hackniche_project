@@ -1,4 +1,6 @@
+import 'package:food_truck_frontend/models/menuitem.dart';
 import 'package:food_truck_frontend/presentation/item_details_screen/item_details_screen.dart';
+import 'package:food_truck_frontend/providers/data_providers.dart';
 
 import 'notifier/iphone_14_15_pro_max_eight_notifier.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,21 @@ class Iphone1415ProMaxEightPageState
     extends ConsumerState<Iphone1415ProMaxEightPage> {
   @override
   Widget build(BuildContext context) {
+    final menudata = ref.watch(menuDataProvider);
+    List<MenuItem> menuList = [];
+    menudata.when(
+      data: (data) {
+        menuList = data.map((e) => (e)).toList();
+        print(menuList);
+      },
+      loading: () {
+        print("loading");
+      },
+      error: (error, stack) {
+        print(error);
+      },
+    );
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -59,7 +76,7 @@ class Iphone1415ProMaxEightPageState
                 SizedBox(height: 45.v),
                 _buildDrinkCategories(context),
                 SizedBox(height: 21.v),
-                _buildPromoSection(context),
+                _buildPromoSection(context, menuList),
               ],
             ),
           ),
@@ -100,6 +117,7 @@ class Iphone1415ProMaxEightPageState
       ),
       actions: [
         AppbarTrailingImage(
+          onTap: () {},
           imagePath: ImageConstant.imgFavorite,
           margin: EdgeInsets.only(
             left: 8.h,
@@ -108,10 +126,12 @@ class Iphone1415ProMaxEightPageState
           ),
         ),
         AppbarTrailingImage(
+          onTap: () {},
           imagePath: ImageConstant.imgBell1,
           margin: EdgeInsets.fromLTRB(103.h, 10.v, 8.h, 7.v),
         ),
         AppbarTrailingImage(
+          onTap: () {},
           imagePath: ImageConstant.imgSearchInterfaceSymbol,
           margin: EdgeInsets.fromLTRB(20.h, 10.v, 28.h, 7.v),
         ),
@@ -470,14 +490,14 @@ class Iphone1415ProMaxEightPageState
   }
 
   /// Section Widget
-  Widget _buildPromoSection(BuildContext context) {
+  Widget _buildPromoSection(BuildContext context, List<MenuItem> menuData) {
     return SizedBox(
       height: 257.v,
       width: 396.h,
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => ItemDetailsPage()));
+          // Navigator.of(context)
+          //     .push(MaterialPageRoute(builder: (context) => ItemDetailsPage()));
         },
         child: Stack(
           alignment: Alignment.bottomLeft,
@@ -507,48 +527,79 @@ class Iphone1415ProMaxEightPageState
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 4.h,
-                top: 70.v,
-                right: 217.h,
-              ),
-              child: _buildFour(
-                context,
-                title: "msg_prawn_mix_salad".tr,
-                price: "lbl_5_98".tr,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 219.h,
-                top: 70.v,
-                right: 2.h,
-              ),
-              child: _buildFour(
-                context,
-                title: "lbl_bbq_chicken".tr,
-                price: "lbl_11_98".tr,
+            GestureDetector(
+              // onTap: () {
+              //   Navigator.of(context).push(MaterialPageRoute(
+              //       builder: (context) =>
+              //           ItemDetailsPage(menuItem: menuData[0])));
+              // },
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 4.h,
+                  top: 70.v,
+                  right: 217.h,
+                ),
+                child: _buildFour(
+                  context,
+                  title: menuData[0].itemName!,
+                  price: menuData[0].price.toString(),
+                ),
               ),
             ),
-            CustomImageView(
-              imagePath: ImageConstant.imgImage7,
-              height: 137.v,
-              width: 132.h,
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(
-                left: 18.h,
-                top: 25.v,
+            GestureDetector(
+              // onTap: () {
+              //   Navigator.of(context).push(MaterialPageRoute(
+              //       builder: (context) =>
+              //           ItemDetailsPage(menuItem: menuData[1])));
+              // },
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 219.h,
+                  top: 70.v,
+                  right: 2.h,
+                ),
+                child: _buildFour(
+                  context,
+                  title: menuData[1].itemName!,
+                  price: menuData[1].price.toString(),
+                ),
               ),
             ),
-            CustomImageView(
-              imagePath: ImageConstant.imgImage3,
-              height: 137.adaptSize,
-              width: 137.adaptSize,
-              alignment: Alignment.topRight,
-              margin: EdgeInsets.only(
-                top: 25.v,
-                right: 21.h,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ItemDetailsPage(menuItem: menuData[0]),
+                  ),
+                );
+              },
+              child: CustomImageView(
+                imagePath: ImageConstant.imgImage7,
+                height: 137.v,
+                width: 132.h,
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(
+                  left: 18.h,
+                  top: 25.v,
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        ItemDetailsPage(menuItem: menuData[1])));
+              },
+              child: CustomImageView(
+                imagePath: ImageConstant.imgImage3,
+                height: 137.adaptSize,
+                width: 137.adaptSize,
+                alignment: Alignment.topRight,
+                margin: EdgeInsets.only(
+                  top: 25.v,
+                  right: 21.h,
+                ),
               ),
             ),
           ],
