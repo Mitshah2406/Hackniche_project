@@ -22,8 +22,21 @@ router.get("/get-schedule", scheduleController.readSchedule);
 router.get("/complete-order-form", (req, res) => {
   res.render("completeOrder");
 });
+router.get("/display-schedule-form", (req, res) => {
+  res.render("schedulePageForm");
+});
 router.post("/create-menu-item", menuController.addItem);
 router.get("/get-menu-items", menuController.readMenu);
+
+router.get("/display-cluster-page", (req, res)=>{
+  res.render("cluster-page")
+});
+
+router.get("/display-qr-page/:id", (req, res)=>{
+  res.render("qrScreen",{  id: req.params.id }
+  )
+});
+
 // 404
 router.get("*", (req, res) => {
   res.render("404");
